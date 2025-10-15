@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiffrement / Déchiffrement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            width: 400px;
+            text-align: center;
+        }
+        input, textarea, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+         button.reset {
+            background-color: #dc3545;
+        }
+        button.reset:hover {
+            background-color: #a71d2a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Chiffrement / Déchiffrement</h2>
+        <h4>created by ahmad mouallem</h4>
+        <textarea id="text" placeholder="Entrez le texte ici"></textarea>
+        <input type="number" id="key" placeholder="Entrez la clé (ex: 3)">
+        <button onclick="encrypt()">Chiffrer</button>
+        <button onclick="decrypt()">Déchiffrer</button>
+        <button class="reset" onclick="resetFields()">Réinitialiser</button>
+        <h3>Résultat:</h3>
+        <textarea id="result" readonly></textarea>
+    </div>
+
+    <script>
+        function encrypt() {
+            const text = document.getElementById('text').value;
+            const key = parseInt(document.getElementById('key').value);
+            let result = '';
+
+            for (let i = 0; i < text.length; i++) {
+                let charCode = text.charCodeAt(i);
+                result += String.fromCharCode(charCode + key);
+            }
+
+            document.getElementById('result').value = result;
+        }
+
+        function decrypt() {
+            const text = document.getElementById('text').value;
+            const key = parseInt(document.getElementById('key').value);
+            let result = '';
+
+            for (let i = 0; i < text.length; i++) {
+                let charCode = text.charCodeAt(i);
+                result += String.fromCharCode(charCode - key);
+            }
+
+            document.getElementById('result').value = result;
+        }
+        function resetFields() {
+            document.getElementById('text').value = '';
+            document.getElementById('key').value = '';
+            document.getElementById('result').value = '';
+        }
+    </script>
+</body>
+</html>
